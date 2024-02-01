@@ -79,10 +79,10 @@ if (!$creds){
     exit    } 
 
 #Open Session
-New-PASSession -Credential $creds -BaseURI https://ny04pam.trad.tradestation.com -SkipCertificateCheck -type RADIUS 
+New-PASSession -Credential $creds -BaseURI https://pam.contoso.com -SkipCertificateCheck -type RADIUS 
 
 #Convert Password to SecureString
-$Password = ConvertTo-SecureString -String "Cyber@rk123!" -AsPlainText -Force
+$Password = ConvertTo-SecureString -String "ChangeMe!" -AsPlainText -Force
 
 $cleanvar = $account
 $account = $account + "_IND"
