@@ -2,8 +2,8 @@
 #
 # NAME: Add PAM Account
 #
-# AUTHOR:  InfoSec
-#
+# AUTHOR:  Josh Mena
+
 # COMMENT: 
 # This script will create new pam account in an existing safe 
 # If the safe does not exist it will not continue  
