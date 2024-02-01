@@ -2,7 +2,7 @@
 #
 # NAME: Remove PAM Account
 #
-# AUTHOR:  InfoSec
+# AUTHOR:  Josh Mena InfoSec Team
 #
 # COMMENT: 
 # This script will remove the pam account for the selected domain. 
@@ -55,7 +55,7 @@ while("qa","eng","trad","nydc","ildc","tydc" -notcontains $varDomain)
  $varDomain = Read-Host -Prompt 'Please type the correct domain to delete account (qa,eng,trad,nydc,ildc,tydc)'
 }
 
-$trad = ".tradestation.com"
+$trad = ".contoso.com"
 $domain = ''
 $domain = $varDomain+$trad
 
@@ -73,7 +73,7 @@ $domain = $varDomain+$trad
         exit    }
          
     #Open Session
-    New-PASSession -Credential $creds -BaseURI https://ny04pam.trad.tradestation.com -SkipCertificateCheck -type RADIUS -Verbose
+    New-PASSession -Credential $creds -BaseURI https://pam.contoso.com -SkipCertificateCheck -type RADIUS -Verbose
 
 
 
