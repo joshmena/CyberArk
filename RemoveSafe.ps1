@@ -2,7 +2,7 @@
 #
 # NAME: Remove Safe 
 #
-# AUTHOR:  InfoSec
+# AUTHOR:  Josh Mena InfoSec Team
 #
 # COMMENT: 
 # This script will remove the safe for the selected user. 
@@ -57,7 +57,7 @@ $account = Read-Host 'Please type SamAccountName of the user'
         exit    }
          
     #Open Session
-    New-PASSession -Credential $creds -BaseURI https://ny04pvwa02.nydc.tradestation.com -SkipCertificateCheck -type RADIUS -Verbose
+    New-PASSession -Credential $creds -BaseURI https://pam.contoso.com -SkipCertificateCheck -type RADIUS -Verbose
 
  #Find user's safe and delete it
     $Pname = $account + "_IND"
