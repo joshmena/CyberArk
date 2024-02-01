@@ -1,2 +1,2 @@
-# CyberArk
+# CyberArk Management
 Automating tasks
