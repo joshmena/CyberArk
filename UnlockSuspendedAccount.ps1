@@ -2,7 +2,7 @@
 #
 # NAME: Unlock Suspended Accounts
 #
-# AUTHOR:  InfoSec
+# AUTHOR:  Josh Mena InfoSec Team
 #
 # COMMENT: 
 # This script will check if the login account is suspended due to 5 bad attempts. 
@@ -117,7 +117,7 @@ if (!$creds){
     exit    } 
 
 #Open Session
-New-PASSession -Credential $creds -BaseURI https://ny04pam.trad.tradestation.com -SkipCertificateCheck -type RADIUS -Verbose # 
+New-PASSession -Credential $creds -BaseURI https://pam.constoso.com -SkipCertificateCheck -type RADIUS -Verbose # 
 
 CheckUserAccount
 
