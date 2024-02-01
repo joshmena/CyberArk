@@ -2,7 +2,7 @@
 #
 # NAME: Delete Terminated User Safes
 #
-# AUTHOR:  InfoSec Team
+# AUTHOR:  Josh Mena InfoSec Team
 #
 # COMMENT: 
 # "This script will check "Terminated Users" AD group and delete the safes from 
@@ -38,7 +38,7 @@ cls
 Write-Host -f Green "Retrieving List from Terminated Users" 
 Write-Host -f white "Please wait ...." 
 
-$ADList = Get-ADGroupMember -server trad.tradestation.com -Identity "terminated users" -Recursive | Select -expand  SAMAccountName
+$ADList = Get-ADGroupMember -server pam.contoso.com -Identity "terminated users" -Recursive | Select -expand  SAMAccountName
 
 
 
@@ -55,7 +55,7 @@ cls
         exit    }
          
  #Open Session
- New-PASSession -Credential $creds -BaseURI https://ny04pam.trad.tradestation.com -SkipCertificateCheck -type RADIUS 
+ New-PASSession -Credential $creds -BaseURI https://pam.contoso.com -SkipCertificateCheck -type RADIUS 
 
 # Queries CyberArk Vault for all users and creates a list. 
 $CAList=Get-PASSafe -FindAll | select safename
@@ -105,13 +105,13 @@ $value = $items.SafeName
 }
   
  
- # $toV="jmena@tradestation.com,javilacastillo@tradestation.com"
+ 
   $subjectV="Monthly CleanUp: Safe(s) pending deletion from Terminated Users"
  # $bodyV="Safe(s) pending deletion from Terminated Users"
   $bodya = ($myArray | convertto-html -Property @{l='Pending Users Safe For Deletion'; e={$_}} | out-string)
 
   
-  Send-MailMessage -From DO-NOT-REPLY@tradestation.com -To jmena@tradestation.com -Subject $subjectV -SmtpServer 10.138.171.5 -Body $bodya -BodyAsHtml
+  Send-MailMessage -From DO-NOT-REPLY@contoso.com -To jmena@contoso.com -Subject $subjectV -SmtpServer 10.10.171.5 -Body $bodya -BodyAsHtml
              
 
 
