@@ -2,7 +2,7 @@
 #
 # NAME: Create Safe Only
 #
-# AUTHOR:  InfoSec
+# AUTHOR:  Josh Mena
 #
 # COMMENT: 
 # This script will Create a new safe. 
@@ -54,10 +54,10 @@ $account = Read-Host 'Please type SamAccountName of the new user'
         $Error.Clear()
     }
 
-if (-not(Get-ADPrincipalGroupMembership -Server trad.tradestation.com -Identity $account -ErrorAction Stop | where name -eq "CYBERARK_USER" | select-object -expandproperty name))
+if (-not(Get-ADPrincipalGroupMembership -Server contoso.com -Identity $account -ErrorAction Stop | where name -eq "CYBERARK_USER" | select-object -expandproperty name))
    {
        Write-Warning -Message "User $account is not a member of CYBERARK_USER AD group."
-       Write-Host "Please add trad\$account account to the AD group before running the script again!" -f Yellow
+       Write-Host "Please add contoso\$account account to the AD group before running the script again!" -f Yellow
        stop-transcript
        exit
    }
@@ -75,7 +75,7 @@ if (-not(Get-ADPrincipalGroupMembership -Server trad.tradestation.com -Identity 
         exit    }
          
     #Open Session
-    New-PASSession -Credential $creds -BaseURI https://ny04pvwa02.nydc.tradestation.com -SkipCertificateCheck -type RADIUS -Verbose  
+    New-PASSession -Credential $creds -BaseURI https://pam.contoso.com -SkipCertificateCheck -type RADIUS -Verbose  
 
    
  #Create variables for user and get AD attributes for description
@@ -274,7 +274,7 @@ catch{
 	write-Host -f green "creating Safe for $desc"  
     Start-Sleep -s 5
          
-    Add-PASSafe -SafeName $Pname -Description $desc -ManagingCPM CPM_NY04 -NumberOfDaysRetention 1 
+    Add-PASSafe -SafeName $Pname -Description $desc -ManagingCPM CPM_04 -NumberOfDaysRetention 1 
       
 	$User_Role | Add-PASSafeMember -SafeName $Pname -MemberName $account -SearchIn "TRAD DOMAIN"
 	$AdminGroup_Role | Add-PASSafeMember -SafeName $Pname -MemberName CYBERARK_ADMIN
